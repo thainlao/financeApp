@@ -1,0 +1,106 @@
+.incomes {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.single_income{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 96%;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+.single_incommee {
+    display: flex;
+    align-items: center;
+}
+
+.income_inside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    border-right: 1px solid black;
+    height: 50px;
+    padding: 10px;
+    min-width: 150px;
+}
+
+.single_income h2{
+    color: black;
+    font-size: 1rem;
+}
+
+.single_income h3{
+    color: black;
+}
+
+.income_inside button{
+    padding: 10px;
+    width: 120px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+    border-radius: 12px;
+    border: 1px solid silver;
+    box-shadow: 0px 0px 7px white;
+&:hover{
+    box-shadow: 0px 0px 7px black;
+}}
+
+.income_inside button:nth-child(1){
+    background-color: rgb(230, 110, 110);
+    color: white;
+}
+
+.income_inside button:nth-child(2){
+    background-color: rgb(199, 182, 182);
+    color: white;
+}
+
+.add_signes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid grey;
+    padding: 1rem;
+}
+
+.add_signes input {
+    width: 250px;
+    height: 30px;
+    border-radius: 12px;
+    border: none;
+    padding: 2px;
+}
+
+.add_signes section{
+    display: flex;
+    flex-direction: column;
+}
+
+.add_signes button{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 12px;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0px 0px 12px silver;
+&:hover{
+    color: rgb(78, 73, 73);
+}}

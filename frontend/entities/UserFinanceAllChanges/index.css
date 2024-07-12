@@ -1,0 +1,92 @@
+.allchanges {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.allchanges ul {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.allchanges_section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    width: 90%;
+    margin: 0 auto;
+    align-items: start;
+    position: relative;
+}
+
+.del_but {
+    position: absolute;
+    left: 85%;
+    top: 10%;
+    transform: translateY(-50%);
+    width: 30px; 
+    height: 30px; 
+    background-color: transparent; 
+    border: none; 
+    cursor: pointer; 
+    transition: all 0.2s ease-in;
+    outline: none;
+}
+
+.del_but::before, .del_but::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 2px; 
+    background-color: rgb(38, 99, 107); 
+    transform-origin: center;
+}
+
+.del_but::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.del_but::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.del_but:hover::before, .del_but:hover::after {
+    background-color: darkred; 
+}
+
+.del_but:active::before, .del_but:active::after {
+    background-color: maroon;
+}
+
+.allchanges h1 {
+    font-size: 1rem;
+}
+
+.allchanges h2 {
+    font-size: 1rem;
+    color: black;
+    font-weight: 600;
+}
+
+.allchanges h3 {
+    font-size: 1rem;
+}
+
+.allchanges p {
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+}
+
+.green-border {
+  border-left: 5px solid #73d984;
+  border-right: 5px solid #73d984;
+}
+
+.red-border {
+  border-left: 5px solid #e77569;
+  border-right: 5px solid #e77569;
+}

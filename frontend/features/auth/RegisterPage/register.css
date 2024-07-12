@@ -1,0 +1,56 @@
+.register{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(#4070f4, #2d4fac);
+}
+
+.register form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background-color: white;
+    padding: 3.5rem;
+    border-radius: 12px;
+}
+
+.register h2{
+    color: #2d4fac;
+}
+
+.register span{
+    color: black;
+}
+
+.register form input {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgb(211, 201, 201);
+    width: 100%;
+}
+
+.register a{
+    color: rgb(59, 112, 180);
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.register span{
+    font-size: 1.2rem;
+}
+
+.register button{
+    width: 100%;
+    background-color: #0171d3;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    height: 40px;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+&:hover{
+    opacity: 0.8;
+}}

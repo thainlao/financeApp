@@ -1,0 +1,51 @@
+.donat{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 45px;
+    width: 50%;
+}
+
+.donat {
+    color: white !important;
+}
+
+.chart-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .chart-container {
+        height: 250px;
+        width: 250px;
+    }
+}
+
+.stat-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.stat-item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.stat-type {
+    font-weight: 700;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.stat-percentage {
+    font-weight: 400;
+    color: rgb(236, 230, 230);
+    font-size: 1.2rem;
+}
