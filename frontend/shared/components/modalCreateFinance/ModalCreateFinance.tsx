@@ -116,8 +116,9 @@ const ModalCreateFinance: React.FC<Props> = ({ setIsModalOpen }) => {
           <select name="type" value={type} onChange={(e) => setType(e.target.value)} required>
             <option value="Crypto">Crypto</option>
             <option value="Stocks">Stocks</option>
-            <option value="Bonds">Bonds</option>
+            <option value="Bonds">Bonds (Облигации)</option>
             <option value="Currency">Currency</option>
+            <option value="ETC">ETC (Иной вид)</option>
           </select>
         </section>
         <button onClick={handleCreateFinance}>Создать таблицу</button>

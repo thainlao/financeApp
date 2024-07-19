@@ -34,7 +34,7 @@ const FAQ = () => {
                     <span className={`arrow ${isOpen ? 'open' : ''}`}>&#9660;</span>
                 </div>
                 {isOpen && (
-                    <div className='faq-answer'>
+                    <div style={{flexDirection: 'column'}} className='faq-answer'>
                         <p>Frontend: React, Typescript, CSS, Redux, Redux Toolkit</p>
                         <p>Backend: NOSQL(MongoDB) Nest JS</p>
                     </div>
@@ -60,8 +60,8 @@ const FAQ = () => {
                 </div>
                 {isOpen3 && (
                     <div className='faq-answer'>
-                        <p>github: <a href='google.com'>link</a></p>
-                        <p>автор: <a href='google.com'>link</a></p>
+                        <a href='https://github.com/thainlao/financeApp'>github</a>
+                        <a href='https://t.me/thainlaod'>creator</a>
                     </div>
                 )}
             </div>

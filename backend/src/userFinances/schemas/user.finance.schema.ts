@@ -6,6 +6,7 @@ export enum FinanceType {
   STOCKS = 'Stocks',
   BONDS = 'Bonds',
   CURRENCY = 'Currency',
+  ETC = 'ETC'
 }
 
 @Schema()

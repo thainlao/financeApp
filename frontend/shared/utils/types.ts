@@ -37,7 +37,8 @@ export enum FinanceType {
     Crypto = 'Crypto',
     Stocks = 'Stocks',
     Bonds = 'Bonds',
-    Currency = 'Currency'
+    Currency = 'Currency',
+    ETC = 'ETC'
 }
 
 export interface IFinance {

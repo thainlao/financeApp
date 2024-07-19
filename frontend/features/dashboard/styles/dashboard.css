@@ -61,6 +61,12 @@
     box-shadow: 0px 0px 12px #3d5155;
 }
 
+@media (max-width: 768px) {
+    .createtable {
+        top: 2%;
+    }
+}
+
 .createtable::before,
 .createtable::after {
     content: '';
@@ -252,8 +258,23 @@
     margin-top: 2rem;
 }
 
+@media (max-width: 768px) {
+    .graphs_section {
+        height: auto;
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
+        gap: 1rem;
+    }
+}
+
 .graphs_section h2{
     color: rgb(41, 39, 39);
+}
+
+@media (max-width: 768px) {
+    .graphs_section h2 {
+        font-size: 1rem;
+    }
 }
 
 .graphs_section span{
@@ -274,6 +295,10 @@
 
 .stocks-border {
   border: 8px solid #36a2eb;
+}
+
+.etc-border {
+    border: 8px solid rgb(160, 41, 130);
 }
 
 @media (max-width: 768px) {
@@ -299,4 +324,10 @@
 .total-sum_section h1{
     color: rgb(41, 39, 39);
     font-size: 1.4rem;
+}
+
+@media (max-width: 768px) {
+    .total-sum_section h1 {
+        font-size: 1rem;
+    }
 }

@@ -51,7 +51,7 @@ const UserFinanceAllChanges: React.FC<UserFinanceAllChangesProps> = ({ finance, 
 
             return (
               <div className="allchanges_section" key={update._id} style={changeStyle}>
-                <button className="del_but" onClick={() => handleDeleteMonthUpdate(update._id)}>X</button>
+                <button className="del_but" onClick={() => handleDeleteMonthUpdate(update._id)}></button>
                 <h2>Price: {update.price}</h2>
                 <h2>Quantity: {update.quantity}</h2>
                 <h2>Date: {new Date(update.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</h2>

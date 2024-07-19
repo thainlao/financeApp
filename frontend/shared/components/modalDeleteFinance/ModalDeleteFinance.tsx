@@ -18,7 +18,7 @@ const ModalDeleteFinance: React.FC<Props> = ({ financeId, setIsDeleteModal, fina
         try {
             await dispatch(deleteUserFinance({ financeId }));
             toast.success('Finance record deleted successfully');
-            setIsDeleteModal(finance._id);
+            setIsDeleteModal('');
         } catch (e) {
             console.log(e);
         }
@@ -27,7 +27,7 @@ const ModalDeleteFinance: React.FC<Props> = ({ financeId, setIsDeleteModal, fina
     const modalRef = useRef<any>(null);
     const handleEscapePress = (event: KeyboardEvent) => {
         if (event.key === 'Escape') {
-            setIsDeleteModal(finance._id);
+            setIsDeleteModal('');
         }
     };
 

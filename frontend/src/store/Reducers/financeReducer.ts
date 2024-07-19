@@ -49,7 +49,7 @@ export const deleteUserFinance = createAsyncThunk<any, { financeId: string }>(
   'userFinance/deleteuserFinances',
   async ({ financeId }) => {
     const response = await axios.post(`http://localhost:3000/user-finances/delete`, { finance_id: financeId });
-    return response.data;
+    return { financeId };
   }
 );
 

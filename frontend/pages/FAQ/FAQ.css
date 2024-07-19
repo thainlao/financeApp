@@ -25,10 +25,17 @@
     font-size: 1.3rem;
     animation: fadeIn 0.3s ease-in-out;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: start;
     gap: 10px;
 }
+
+.faq-answer a{
+    color: white;
+    transition: all 0.2s ease-in;
+&:hover{
+    opacity: 0.8;
+}}
 
 .arrow {
     transition: transform 0.3s ease-in-out;

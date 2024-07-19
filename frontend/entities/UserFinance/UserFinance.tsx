@@ -56,9 +56,18 @@ const UserFinance: React.FC = () => {
         return 'currency-border';
       case 'Stocks':
         return 'stocks-border';
+        case 'ETC':
+          return 'etc-border';
       default:
         return '';
     }
+  };
+
+  const formatNumber = (number: number) => {
+    return new Intl.NumberFormat('ru-RU', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(number);
   };
 
   return (
@@ -73,7 +82,7 @@ const UserFinance: React.FC = () => {
             </div>
             {finance.img && <img src={finance.img} alt={finance.alt || 'No description'} />}
             <p>Started Quantity: <span>{finance.started_quantity}</span></p>
-            <p>Started Price: <span>{finance.started_price}$</span></p>
+            <p>Started Price: <span>{formatNumber(finance.started_price)}$</span></p>
             <p>Type: <span>{finance.type}</span></p>
             <p>Created At: <span>{new Date(finance.created_at).toLocaleDateString()}</span></p>
 
