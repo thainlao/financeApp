@@ -50,7 +50,6 @@ p,h1,h2,h3,h4,h5,h6,span{
   height: 100%;
   display: flex;
   align-items: center;
-  background: rgb(0, 0, 0, 0.6);
   justify-content: center;
   z-index: 1000;
 } 

@@ -19,11 +19,19 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const userData: IUser = useSelector((state: RootState) => state.auth.userData);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isIncomeOpen, setIsIncomeOpen] = useState<boolean>(false);
+  const [userIncomes, setUserIncomes] = useState<userIncomes[]>([]);
+  const [activeFilters, setActiveFilters] = useState<FinanceType[]>([
+    FinanceType.Crypto,
+    FinanceType.Stocks,
+    FinanceType.Bonds,
+    FinanceType.Currency,
+    FinanceType.ETC,
+  ]);
+
   const isLoading = useAppSelector((state) => state.userFinance.isLoading);
   const isLoading2 = useAppSelector((state) => state.auth.isLoading);
   const userFinances = useAppSelector((state: any) => state.userFinance.userFinances);
-  const [isIncomeOpen, setIsIncomeOpen] = useState<boolean>(false);
-  const [userIncomes, setUserIncomes] = useState<userIncomes[]>([]);
 
   useEffect(() => {
     if (!localStorage.getItem('accessToken') || !localStorage.getItem('refreshToken')) {
@@ -47,6 +55,12 @@ const Dashboard = () => {
       fetchIncomes();
     }
   }, [dispatch, userData]);
+
+  useEffect(() => {
+    if (userData && userData.email) {
+      document.title = `Finance App (${userData.email})`
+    }
+  }, [userData]);
 
   if (!userData) {
     return (
@@ -96,26 +110,28 @@ const Dashboard = () => {
     }
 
     return percentages;
-};
+  };
 
-const percentages = calculatePercentages(userFinances);
+  const percentages = calculatePercentages(userFinances);
+
+  const toggleFilter = (filter: FinanceType) => {
+    setActiveFilters((prev) => prev.includes(filter) ? prev.filter((f) => f !== filter) : [...prev, filter])
+  };
 
   return (
     <div className='dashboard'>
       <Dashheader userData={userData} />
-      <div
-      className={!userData.activated === true ? 'activatedacc' : ''}
-      >
-        <h5>{!userData.activated === true ? 'Активируйте аккаунт в' : ''}{!userData.activated === true ? <span onClick={() => navigate('/setting')}> настройках</span> : ''}</h5>  
+      <div className={!userData.activated ? 'activatedacc' : ''}>
+        <h5>{!userData.activated ? 'Активируйте аккаунт в' : ''}{!userData.activated ? <span onClick={() => navigate('/setting')}> настройках</span> : ''}</h5>  
       </div>
 
-        <div className='dashbody'>
-          <div className='mainbuttons'>
-            <button onClick={() => setIsIncomeOpen((prev) => !prev)} className={isIncomeOpen ? '' : 'activebut'}>Ваши инвестиции</button>
-            <button onClick={() => setIsIncomeOpen((prev) => !prev)} className={isIncomeOpen ? 'activebut' : ''}>Ваши доходы</button>
-          </div>
+      <div className='dashbody'>
+        <div className='mainbuttons'>
+          <button onClick={() => setIsIncomeOpen((prev) => !prev)} className={!isIncomeOpen ? 'activebut' : ''}>Ваши инвестиции</button>
+          <button onClick={() => setIsIncomeOpen((prev) => !prev)} className={isIncomeOpen ? 'activebut' : ''}>Ваши доходы</button>
+        </div>
 
-          {isIncomeOpen ?
+        {isIncomeOpen ?
           <div>
             <Income userIncomes={userIncomes} />
           </div> :
@@ -124,8 +140,24 @@ const percentages = calculatePercentages(userFinances);
               <ModalCreateFinance setIsModalOpen={setIsModalOpen} />
             )}
             <div className='user_finances'>
-              <button className='createtable' onClick={() => setIsModalOpen(true)}>Создать таблицу</button>
-              <UserFinance />
+              <button className='createtable1' onClick={() => setIsModalOpen(true)}>Создать таблицу</button>
+
+              <div className='sorted_with_section'>
+                <h1>Сортировать По</h1>
+                <div>
+                {Object.values(FinanceType).map((type) => (
+                <button
+                  key={type}
+                  className={`button ${activeFilters.includes(type) ? 'activemod' : ''}`}
+                  onClick={() => toggleFilter(type)}
+                >
+                  {type}
+                </button>
+              ))}
+                </div>
+              </div>
+              <UserFinance activeFilters={activeFilters} />
+
               <div className="total-sum">
                 <h1>Общая сумма всех инвестиций:</h1>
                 <h2>в рублях: ₽{formatNumber(totalInUSD)}</h2>
@@ -136,28 +168,30 @@ const percentages = calculatePercentages(userFinances);
             <div className='graphs_section'>
               <h2>{userFinances.length > 0 ? `Инвестиционная стратегия ${userData.email}` : 'Вы пока ничего не добавили :('}</h2>
               <div className='stat-section'>
-              {Object.keys(percentages).map((type) => (
+                {Object.keys(percentages).map((type) => (
                   <div key={type} className='stat-item'>
-                      <span className='stat-type'>{type}:</span>
-                      <span className='stat-percentage'>{percentages[type as FinanceType]}</span>
+                    <span className='stat-type'>{type}:</span>
+                    <span className='stat-percentage'>{percentages[type as FinanceType]}</span>
                   </div>
-              ))}
+                ))}
               </div>
+
               <div className="total-sum_section">
                 <h1>Общая сумма всех инвестиций:</h1>
                 <span>в рублях ₽: {formatNumber(totalInUSD)}</span>
                 <span>в долларах $: {formatNumber(total)}</span>
               </div>
-            <div className='graphs'>
-              <Donat />
-              <Graph />
-            </div>
+
+              <div className='graphs'>
+                <Donat />
+                <Graph />
+              </div>
             </div>
           </div>}
-        </div>
+      </div>
 
-      {isLoading ? <div className='loader'></div> : ''}
-      {isLoading2 ? <div className='loader'></div> : ''}
+      {isLoading && <div className='loader'></div>}
+      {isLoading2 && <div className='loader'></div>}
     </div>
   );
 };

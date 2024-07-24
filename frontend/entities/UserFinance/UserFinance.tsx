@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './userfinance.css';
 import { fetchUserFinances } from '../../src/store/Reducers/financeReducer';
 import { useAppDispatch, useAppSelector } from '../../src/store/hoocs';
-import { IFinance, IUser } from '../../shared/utils/types';
+import { FinanceType, IFinance, IUser } from '../../shared/utils/types';
 import UserFinanceAllChanges from '../UserFinanceAllChanges/UserFinanceAllChanges';
 import ModalUpdateFinance from '../../shared/components/modalUpdateFinance/ModalUpdateFinance';
 import ModalDeleteFinance from '../../shared/components/modalDeleteFinance/ModalDeleteFinance';
@@ -13,7 +13,11 @@ import bonds from '../../src/assets/icons8-bearer-bonds-32.png';
 import currency from '../../src/assets/icons8-currency-30.png';
 import stocks from '../../src/assets/icons8-stocks-100.png';
 
-const UserFinance: React.FC = () => {
+export interface IPros {
+  activeFilters: FinanceType[];
+};
+
+const UserFinance: React.FC<IPros> = ({activeFilters}) => {
   const dispatch = useAppDispatch();
   const userData: IUser = useAppSelector((state: any) => state.auth.userData);
   const userFinances = useAppSelector((state: any) => state.userFinance.userFinances);
@@ -38,6 +42,7 @@ const UserFinance: React.FC = () => {
   };
 
   const sortedUserFinances = [...userFinances].sort((a: IFinance, b: IFinance) => b.monthly_updates.length - a.monthly_updates.length);
+  const filteredFinances = sortedUserFinances.filter((finance: IFinance) => activeFilters.includes(finance.type));
 
   const typeIcons: { [key: string]: string } = {
     Crypto: crypto,
@@ -74,7 +79,7 @@ const UserFinance: React.FC = () => {
     <div className='single_finance'>
       {isLoading && <p>Loading...</p>}
       <ul>
-        {sortedUserFinances.map((finance: IFinance) => (
+        {filteredFinances.map((finance: IFinance) => (
           <li key={finance._id} className={getBorderClass(finance.type)}>
             <div className='images_users'>
               <p>Name: <span>{finance.name}</span></p>
