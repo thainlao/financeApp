@@ -33,4 +33,20 @@ export class AuthController {
   async changeUserEmail(@Body() changeEmailDto: ChangeEmailDto) {
     return this.authService.changeEmail(changeEmailDto)
   }
+
+  @Post('finduserbyemail')
+  async FindUserByEmail(@Body() email: string) {
+    return this.authService
+  }
+
+  @Post('forget-password')
+async forgetPassword(@Body('email') email: string) {
+  return this.authService.checkUserByEmail(email);
+}
+
+@Post('change-password')
+async changePassword(@Body() changePasswordDto: { email: string, newPassword: string }) {
+  const { email, newPassword } = changePasswordDto;
+  return this.authService.changePassword(email, newPassword);
+}
 }

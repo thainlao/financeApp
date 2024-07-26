@@ -1,16 +1,15 @@
 .dashboard {
     display: flex;
     flex-direction: column;
-    background: linear-gradient(#345974, #699ba6);
     min-height: 100vh;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid grey;
     width: 100%;
     align-items: center;
+    background-color: #007bff;
 }
 
 .header div{
@@ -21,19 +20,20 @@
 
 .header button{
     border: none;
-    background-color: rgb(238, 231, 231);
-    color: rgb(0, 0, 0);
+    background-color: white;
+    color: #007bff;
     padding: 10px;
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.2s ease-in;
+    font-size: 1rem;
 &:hover{
     transform: translateY(-2px);
     opacity: 0.8;
 }}
 
-.header button:nth-child(2){
-    border: 2px solid rgb(214, 75, 75);
+.header h2{
+    color: white;
 }
 
 .dashbody {
@@ -44,61 +44,52 @@
 }
 
 .createtable1 {
-    width: 150px;
-    padding: 10px;
-    border-radius: 12px;
-    margin-bottom: 1rem;
-    border: none;
-    transition: all 0.2s ease-in;
-    color: black;
-    cursor: pointer;
-    background-color: rgb(214, 231, 233);
-    overflow: hidden;
-    z-index: 1;
-    box-shadow: 0px 0px 12px #3d5155;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 20px;
+  letter-spacing: 4px;
+  position: relative;
+  background-color: #007bff;
+  margin-bottom: 1.5rem;
+  border: none;
+  color: #fff;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+  transition-duration: 0.4s;
+  overflow: hidden;
+  box-shadow: 0 5px 15px #193047;
+  border-radius: 4px;
 }
 
-@media (max-width: 768px) {
-    .createtable {
-        top: 2%;
-    }
+.createtable1:hover {
+  background: #fff;
+  box-shadow: 0px 2px 10px 5px #007bff;
+  color: #000;
 }
 
-.createtable::before,
-.createtable::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 400%;
-    height: 400%;
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.5s ease;
-    border-radius: 50%;
-    z-index: -1;
+.createtable1:after {
+  content: "";
+  background: #1abc9c;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px !important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s
 }
 
-.createtable::before {
-    background-color: rgba(255, 255, 255, 0.2);
+.createtable1:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
 }
 
-.createtable:hover::before {
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.createtable:hover::after {
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.createtable:hover {
-    color: #3d5155;
-    background-color: #fff;
-}
-
-.createtable:focus {
-    outline: none;
-}
+.createtable1:focus { outline:0; }
 
 .dashbody form{
     display: flex;
@@ -145,10 +136,14 @@
     flex-direction: column;
     align-items: start;
     overflow: auto;
-    background:#1c313f;
     padding: 1rem;
+    background-color: rgb(255, 255, 255);
     position: relative;
     min-height: 500px;
+    border: 2px solid #72aceb;
+    border-radius: 12px;
+    border-top: 12px solid #72aceb;
+    border-bottom: 12px solid #72aceb;
 }
 
 .dashboard footer{
@@ -160,7 +155,6 @@
 .mainbuttons {
     display: flex;
     gap: 10px;
-    border-bottom: 1px solid gray;
     width: 100%;
 }
 
@@ -173,22 +167,14 @@
     background: none;
     color: inherit;
     position: relative;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 500;
-    color: grey;
-    overflow: hidden;
-}
+    color: rgb(211, 201, 201);
+    background-color: #0d75e4;
+&:hover{
+    box-shadow: 0px 0px 12px #007bff;
+}}
 
-.mainbuttons button::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background-color: white;
-    transition: width 0.2s ease-in, left 0.2s ease-in;
-}
 
 .activatedacc {
     height: 50px;
@@ -219,7 +205,8 @@
 }
 
 .activebut {
-    color: white !important;
+    color: rgb(255, 255, 255) !important;
+    background-color: #3786fc !important;
 }
 
 .total-sum {
@@ -229,6 +216,17 @@
     padding-top: 20px;
     flex-direction: column;
     gap: 5px;
+    color: black;
+}
+
+.total-sum h1{
+    color: #282a2c;
+    font-size: 1.2rem;
+}
+
+.total-sum h2{
+    color: #282a2c;
+    font-size: 1rem;
 }
 
 .total-sum p{
@@ -339,14 +337,20 @@
     color: black;
     transition: all 0.2s ease-in;
     border-radius: 12px;
-    border: none;
+    border: 1px solid #007bff;
     cursor: pointer;
 }
 
+.sorted_with_section h1{
+    color: #282a2c;
+    font-size: 1.2rem;
+}
+
 .activemod{
-    background-color: #007bff !important;
+    background-color: #3170b4 !important;
     color: white !important; 
     border: 1px solid #007bff !important;
+    box-shadow: 0px 0px 6px #007bff;
 }
 
 .total-sum_section h1{
@@ -357,5 +361,12 @@
 @media (max-width: 768px) {
     .total-sum_section h1 {
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .sorted_with_section div {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
     }
 }

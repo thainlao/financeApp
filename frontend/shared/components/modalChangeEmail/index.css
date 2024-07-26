@@ -10,6 +10,7 @@
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.5);
+  overflow: none;
 }
 
 .modal-content {
@@ -26,6 +27,7 @@
   align-items: center;
   text-align: center;
   gap: 1rem;
+  overflow: none;
 }
 
 .modal-content h4{

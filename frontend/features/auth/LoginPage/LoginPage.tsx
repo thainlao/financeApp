@@ -47,7 +47,7 @@ const LoginPage = () => {
           placeholder="Password"
           required
         />
-        <a href='/'>Забыли пароль?</a>
+        <a href='/forgetpass'>Забыли пароль?</a>
         <button onClick={handleLogin} type="submit">Login</button>
         <span>нет аккаунта?<a href='/register'>создать</a></span>
       </form>

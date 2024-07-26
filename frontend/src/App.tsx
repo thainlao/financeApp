@@ -10,6 +10,8 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Setting from "../features/setting/Setting";
 import FAQ from "../pages/FAQ/FAQ";
+import ForgetPassword from "../features/auth/ForgetPassword/ForgetPassword";
+import ChangePassword from "../features/auth/ForgetPassword/ChangePassword";
 
 function App() {
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -27,6 +29,8 @@ function App() {
         <Route path="/" element={<Dashboard />}/>
         <Route path="/login" element={<LoginPage />}/>
         <Route path="/register" element={<RegisterPage />}/>
+        <Route path="/forgetpass" element={<ForgetPassword />}/>
+        <Route path='/change-password' element={<ChangePassword />} />
         <Route path="/setting" element={<Setting />}/>
         <Route path="/faq" element={<FAQ />}/>
       </Routes>

@@ -174,10 +174,16 @@ export const userFinanceSlice = createSlice({
     builder.addCase(createIncome.rejected, (state) => {
       state.isLoading = false;
     });
+    builder.addCase(createIncome.fulfilled, (state) => {
+      state.isLoading = false;
+    });
     builder.addCase(updateIncome.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(updateIncome.rejected, (state) => {
+      state.isLoading = false;
+    });
+    builder.addCase(updateIncome.fulfilled, (state) => {
       state.isLoading = false;
     });
     builder.addCase(deleteIncome.pending, (state) => {
@@ -193,6 +199,9 @@ export const userFinanceSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(getAllIncomesById.rejected, (state) => {
+      state.isLoading = false;
+    });
+    builder.addCase(getAllIncomesById.fulfilled, (state) => {
       state.isLoading = false;
     });
   },

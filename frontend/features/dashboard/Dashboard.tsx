@@ -10,9 +10,10 @@ import UserFinance from '../../entities/UserFinance/UserFinance';
 import { useAppDispatch, useAppSelector } from '../../src/store/hoocs';
 import ModalCreateFinance from '../../shared/components/modalCreateFinance/ModalCreateFinance';
 import Income from './components/Income';
-import { getAllIncomesById } from '../../src/store/Reducers/financeReducer';
+import { deleteIncome, getAllIncomesById } from '../../src/store/Reducers/financeReducer';
 import Donat from './components/Donat';
 import Graph from './components/Graph';
+import { toast } from 'react-toastify';
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
@@ -133,7 +134,7 @@ const Dashboard = () => {
 
         {isIncomeOpen ?
           <div>
-            <Income userIncomes={userIncomes} />
+            <Income setUserIncomes={setUserIncomes} userIncomes={userIncomes} />
           </div> :
           <div>
             {isModalOpen && (

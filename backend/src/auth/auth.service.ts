@@ -67,4 +67,22 @@ export class AuthService {
     }
     await this.usersService.updateEmailAndDeactivate(changeEmailDto)
   }
+
+  async checkUserByEmail(email: string) {
+    const user = await this.usersService.findByEmail(email);
+    if (!user || !user.activated) {
+      throw new NotFoundException('User not found or not activated');
+    }
+    return { email: user.email };
+  }
+  
+  async changePassword(email: string, newPassword: string) {
+    const user = await this.usersService.findByEmail(email);
+    if (!user || !user.activated) {
+      throw new NotFoundException('User not found or not activated');
+    }
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    await this.usersService.updatePassword(email, hashedPassword);
+    return { message: 'Password changed successfully' };
+  }
 }

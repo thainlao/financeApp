@@ -10,26 +10,33 @@ import ModalIncome from '../../../shared/components/modalIncome/ModalIncome';
 
 interface Props {
     userIncomes: userIncomes[];
+    setUserIncomes: (incomes: userIncomes[]) => void;
 }
 
-const Income: React.FC<Props> = ({userIncomes}) => {
+const Income: React.FC<Props> = ({userIncomes, setUserIncomes}) => {
     const dispatch = useAppDispatch();
     const [name, setName] = useState('Лучший таксист Москвы');
     const [amount, setAmount] = useState<number | string>('');
     const userData: IUser = useSelector((state: RootState) => state.auth.userData);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-    const handleAddIncome = () => {
+    const handleAddIncome = async () => {
         if (!name || !amount) {
             toast.error('Пожалуйста, заполните все поля');
             return;
         }
 
         if (userData && userData._id) {
-            dispatch(createIncome({ useremail: userData.email, name, amount: Number(amount) }));
-            setName('')
-            setAmount(0);
-            toast.success('Вы успешно создали запись')
+            try {
+                const response: any = await dispatch(createIncome({ useremail: userData.email, name, amount: Number(amount) }));
+                setUserIncomes([...userIncomes, response.payload]); // Update the local state
+                setName('')
+                setAmount(0);
+                toast.success('Вы успешно создали запись')
+            } catch (error) {
+                console.error('Error adding income:', error);
+                toast.error('Не удалось создать запись');
+            }
         }
     };
 
@@ -41,12 +48,14 @@ const Income: React.FC<Props> = ({userIncomes}) => {
     let euro = 90
     let cny = 11;
 
-    const handleDeleteFinanceById = (incomeId: string) => {
+    const handleDeleteFinanceById = async (incomeId: string) => {
         try {
-            dispatch(deleteIncome({ incomeId }));
+            await dispatch(deleteIncome({ incomeId }));
+            setUserIncomes(userIncomes.filter(income => income._id !== incomeId));
             toast.success('Вы успешно удалили запись в Income')
-        } catch(e) {
-            console.log(e);
+        } catch (error) {
+            console.error('Error deleting income:', error);
+            toast.error('Не удалось удалить запись');
         }
     };
 
@@ -78,8 +87,8 @@ const Income: React.FC<Props> = ({userIncomes}) => {
                         </div>
 
                         <div className="income_inside">
+                        <button onClick={() => setIsModalOpen(true)}>Редактировать</button>
                             <button onClick={() => handleDeleteFinanceById(income._id)}>Удалить</button>
-                            <button onClick={() => setIsModalOpen(true)}>Редактировать</button>
                         </div>
 
                         {isModalOpen && (

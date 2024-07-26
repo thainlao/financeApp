@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from './schemas/user.schema';
@@ -36,5 +36,14 @@ export class UsersService {
       { email: changeEmailDto.currentEmail },
       { email: changeEmailDto.newEmail, activated: false }
     );
+  }
+
+  async updatePassword(email: string, newPassword: string) {
+    const user = await this.userModel.findOne({ email });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    user.password = newPassword;
+    await user.save();
   }
 }
