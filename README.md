@@ -14,8 +14,6 @@ npm run start:dev
 ```
 ---
 
-## Заголовки
-
 В стеке: 
 * Node JS(Nest)
 * React
