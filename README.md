@@ -4,6 +4,7 @@
 Для запуска
 
 ```
+git clone https://github.com/thainlao/financeApp
 cd .\frontend\
 npm run dev
 
